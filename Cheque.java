@@ -8,30 +8,29 @@ public class Cheque {
      *   Создать метод, который рассчитывает итоговую сумму с учетом скидки, если карта была преъявлена.*/
 
     private Purchase[] cheque;
-    private final double DISCOUNT_CARD = 0.10;
+    private static final double DISCOUNT_CARD = 0.10;
+    private static final double NO_CARD = 1;
     private boolean cardIsShown = true;
 
-    public void totalPriceWithDiscount(Purchase... purchase){ //передаю массив товаров(объектов)
-            Purchase.showCard(cardIsShown); // проверяю предъявление карты
-            double countAmountForOnePurchase = 0;
-            double countTotalCost = 0;
-            System.arraycopy(purchase, 0, cheque, 0, purchase.length); // передаю массив товаров в массив Чек.
-            for (int i = 0; i < cheque.length; i++) {
-                 countAmountForOnePurchase = cheque[i].getPrice()*cheque[i].getAmount()*DISCOUNT_CARD;
-                 countTotalCost += countAmountForOnePurchase;
-                 countAmountForOnePurchase = 0;
-            }
-        }
-    public void totalPriceIfCardHaveNotShown(Purchase... purchase){
-            Purchase.noCard(cardIsShown);
-        double countAmountForOnePurchase = 0;
-        double countTotalCost = 0;
-        System.arraycopy(purchase, 0, cheque, 0, purchase.length);
+
+    private double calculatorForCheque(Purchase... purchase) {
+        double countAmountForOnePurchaseWithoutDiscount = 0;
+        double countTotalCostWithoutDiscount = 0;
+        System.arraycopy(purchase, 0, cheque, 0, purchase.length); // передаю массив товаров в массив Чек.
         for (int i = 0; i < cheque.length; i++) {
-            countAmountForOnePurchase = cheque[i].getPrice()*cheque[i].getAmount();
-            countTotalCost += countAmountForOnePurchase;
-            countAmountForOnePurchase = 0;
+            countAmountForOnePurchaseWithoutDiscount = cheque[i].getPrice() * cheque[i].getAmount();
+            countTotalCostWithoutDiscount += countAmountForOnePurchaseWithoutDiscount;
+        }
+        return countTotalCostWithoutDiscount;
+    }
+
+    public void totalPriceWithDiscount(Purchase... purchase) {
+        double total = calculatorForCheque() * Purchase.showCard(DISCOUNT_CARD);
+        System.out.println("total cost with discount\t" + total);
+    }
+
+    public void totalPriceIfCardHaveNotShown(Purchase... purchase) {
+        System.out.println("total cost without discount\t" + calculatorForCheque() * Purchase.noCard(NO_CARD));
         }
     }
 
-}

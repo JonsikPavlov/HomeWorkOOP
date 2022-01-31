@@ -14,12 +14,12 @@ public class Purchase {
         this.amount = amount;
     }
 
-    public static boolean showCard(boolean showDiscountCard){
-        return showDiscountCard = true;
+    public static double showCard(double DISCOUNT_CARD){
+        return DISCOUNT_CARD = 0.10;
     }
 
-    public static boolean noCard(boolean showDiscountCard){
-        return showDiscountCard = false;
+    public static double noCard(double NO_CARD){
+        return NO_CARD = 1;
     }
 
     public String getName() {
