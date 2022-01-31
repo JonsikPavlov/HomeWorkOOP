@@ -13,15 +13,7 @@ public class Purchase {
         this.price = price;
         this.amount = amount;
     }
-
-    public static double showCard(double DISCOUNT_CARD){
-        return DISCOUNT_CARD = 0.10;
-    }
-
-    public static double noCard(double NO_CARD){
-        return NO_CARD = 1;
-    }
-
+    
     public String getName() {
         return name;
     }

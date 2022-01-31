@@ -9,7 +9,6 @@ public class Cheque {
 
     private Purchase[] cheque;
     private static final double DISCOUNT_CARD = 0.10;
-    private static final double NO_CARD = 1;
     private boolean cardIsShown = true;
 
 
@@ -25,12 +24,12 @@ public class Cheque {
     }
 
     public void totalPriceWithDiscount(Purchase... purchase) {
-        double total = calculatorForCheque() * Purchase.showCard(DISCOUNT_CARD);
+        double total = calculatorForCheque() * DISCOUNT_CARD;
         System.out.println("total cost with discount\t" + total);
     }
 
     public void totalPriceIfCardHaveNotShown(Purchase... purchase) {
-        System.out.println("total cost without discount\t" + calculatorForCheque() * Purchase.noCard(NO_CARD));
+        System.out.println("total cost without discount\t" + calculatorForCheque());
         }
     }
 
